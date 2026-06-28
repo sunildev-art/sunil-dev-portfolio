@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
 import Lenis from 'lenis';
@@ -10,23 +10,16 @@ import BackToTop from '@/components/BackToTop';
 import { useTheme } from '@/context/ThemeContext';
 
 import Hero from '@/components/sections/Hero';
+import About from '@/components/sections/About';
+import Stats from '@/components/sections/Stats';
+import Skills from '@/components/sections/Skills';
+import Experience from '@/components/sections/Experience';
+import Projects from '@/components/sections/Projects';
+import Services from '@/components/sections/Services';
+import Testimonials from '@/components/sections/Testimonials';
+import Contact from '@/components/sections/Contact';
 
 import 'react-toastify/dist/ReactToastify.css';
-
-const About = lazy(() => import('@/components/sections/About'));
-const Stats = lazy(() => import('@/components/sections/Stats'));
-const Skills = lazy(() => import('@/components/sections/Skills'));
-const Experience = lazy(() => import('@/components/sections/Experience'));
-const Projects = lazy(() => import('@/components/sections/Projects'));
-const Services = lazy(() => import('@/components/sections/Services'));
-const Testimonials = lazy(() => import('@/components/sections/Testimonials'));
-const Contact = lazy(() => import('@/components/sections/Contact'));
-
-const SectionFallback = () => (
-  <div className="py-16" aria-hidden="true">
-    <div className="mx-auto h-24 max-w-5xl rounded-3xl bg-slate-100/70 dark:bg-slate-900/40" />
-  </div>
-);
 
 function App() {
   const { theme } = useTheme();
@@ -79,16 +72,14 @@ function App() {
 
         <main className="flex-1 w-full max-w-[88rem] mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-16">
           <Hero />
-          <Suspense fallback={<SectionFallback />}>
-            <About />
-            <Stats />
-            <Skills />
-            <Experience />
-            <Projects />
-            <Services />
-            <Testimonials />
-            <Contact />
-          </Suspense>
+          <About />
+          <Stats />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Services />
+          <Testimonials />
+          <Contact />
         </main>
 
         <Footer />
