@@ -3,8 +3,13 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import emailjs from '@emailjs/browser';
 import SectionHeader from '../SectionHeader';
 import { personalInfo } from '../../data/portfolioData';
+
+const EMAILJS_SERVICE_ID = 'service_ykglagt';
+const EMAILJS_TEMPLATE_ID = 'template_h9y3p3c';
+const EMAILJS_PUBLIC_KEY = '0FU3dHHQHrc13NGJn';
 
 const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -69,14 +74,26 @@ const Contact: React.FC = () => {
     setSubmitted(false);
 
     try {
-      // Simulate contact form submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      toast.success('Your message has been sent successfully!');
+      // Map form's "subject" field to EmailJS template variable "title"
+      const templateParams = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        title: formData.subject.trim(),
+        message: formData.message.trim(),
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY,
+      );
+
+      toast.success("Message sent successfully. I'll get back to you soon.");
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch {
-      toast.error('Failed to send the message. Please try again.');
+      toast.error('Failed to send message. Please try again.');
     } finally {
       setLoading(false);
     }
