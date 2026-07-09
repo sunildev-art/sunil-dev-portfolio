@@ -55,12 +55,23 @@ const Navbar: React.FC = () => {
       const elementPosition = elementRect - bodyRect;
       const offsetPosition = elementPosition - offset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
       setActiveSection(targetId);
-      setIsOpen(false);
+      
+      if (isOpen) {
+        setIsOpen(false);
+        // Delaying scroll slightly on mobile drawer prevents the closing animation from interrupting smooth scroll
+        setTimeout(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }, 150);
+      } else {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
     }
   };
 
