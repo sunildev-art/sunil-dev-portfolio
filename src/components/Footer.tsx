@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8 flex flex-col items-center">
         {/* Navigation Links */}
         <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
-          {['home', 'about', 'skills', 'experience', 'projects', 'services', 'testimonials', 'contact'].map((section) => (
+          {['home', 'about', 'skills', 'experience', 'projects', 'services', 'contact'].map((section) => (
             <button
               key={section}
               onClick={() => handleScroll(section)}

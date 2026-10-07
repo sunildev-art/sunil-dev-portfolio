@@ -16,7 +16,7 @@ import Skills from '@/components/sections/Skills';
 import Experience from '@/components/sections/Experience';
 import Projects from '@/components/sections/Projects';
 import Services from '@/components/sections/Services';
-import Testimonials from '@/components/sections/Testimonials';
+// import Testimonials from '@/components/sections/Testimonials';
 import Contact from '@/components/sections/Contact';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -78,7 +78,7 @@ function App() {
           <Experience />
           <Projects />
           <Services />
-          <Testimonials />
+          {/* <Testimonials /> */}
           <Contact />
         </main>
 
